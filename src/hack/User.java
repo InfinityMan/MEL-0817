@@ -106,6 +106,10 @@ public class User implements Serializable {
         serData("hAcKsave.hsf", this);
     }
     
+    public void addMission(Contract contr) {
+        currentContracts.add(contr);
+    }
+    
     /**
      *
      * @param exp
