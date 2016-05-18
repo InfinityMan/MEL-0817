@@ -258,20 +258,19 @@ public final class Hacknet extends javax.swing.JFrame {
             } else if(command[0].equalsIgnoreCase("dc")) {
                 dc();
             } else if(command[0].startsWith("com")) {
-                /*for (int i = 0; i < user.currentContracts.size(); i++) {
-                Contract get = user.currentContracts.get(i);
-                if(command[1].equalsIgnoreCase(get.id+"")) {
-                if (get instanceof ContractVirus) {
-                if(((ContractVirus) get).target.virused) {
-                user.currentContracts.remove(get);
-                print("Contract successfully complited");
-                //MONEY
+                try {
+                    if (Base.stringToInt(command[1]) > 0 && Base.stringToInt(command[1]) < user.currentContracts.size() + 1) {
+                        if (user.currentContracts.get(Base.stringToInt(command[1])).isComplited()) {
+                            //award
+                            print("You successfully completed a contract " + command[1]);
+                            user.currentContracts.remove(Base.stringToInt(command[1]));
+                        }
+                    } else {
+                        print("Nope, this contract can not be");
+                    }
+                } catch (NumberFormatException ex) {
+                    print("Oh, please enter a number");
                 }
-                } else {
-                System.err.println("get !instanceof ContractVirus");
-                }
-                }
-                }*/
             } else if(command[0].equalsIgnoreCase("virus")) {
                 if(currentTarget.hacked) {
                     Thread tmpThread = new Thread(() -> {
@@ -338,7 +337,7 @@ public final class Hacknet extends javax.swing.JFrame {
     private void genMission() {
         Contract con = new Contract(2, user);
         print(con.id+", "+con.target.ip+", "+con.missionShort);
-        user.currentContracts.add(new Contract(2, user));
+        user.currentContracts.add(new Contract(0, user));
         user.gettedContractsNumber++;
     }
     
