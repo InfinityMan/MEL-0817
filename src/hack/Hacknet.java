@@ -12,6 +12,7 @@ import java.io.IOException;
 import static java.lang.System.err;
 import static java.lang.System.exit;
 import static java.lang.System.out;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,7 @@ import static javax.swing.UIManager.setLookAndFeel;
 import static javax.swing.UIManager.setLookAndFeel;
 import static javax.swing.UIManager.setLookAndFeel;
 import static javax.swing.UIManager.setLookAndFeel;
+import static ru.epiclib.base.Base.randomBinary;
 
 /**
  *
@@ -319,7 +321,11 @@ public final class Hacknet extends javax.swing.JFrame {
     }
     
     private void missions() {
-        print(user.printCurrentContracts());
+        Thread myThready = new Thread( () -> {
+            ContractsList cl = new ContractsList(user, user.currentContracts);
+            cl.setVisible(true);
+        });
+        myThready.start();
     }
     
     private void genMission() {
