@@ -11,8 +11,8 @@ package hack;
  */
 public class Software {
     
-    String name,desc;
+    public String name,desc;
     
-    int price,version,type;
+    public int price,version,type;
     
 }
