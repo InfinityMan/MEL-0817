@@ -213,10 +213,10 @@ public final class Hacknet extends javax.swing.JFrame {
                 //user = load(this);
                 user = new User("Dmig", "*******", 160, 17);
                 loaded = true;
-                for (int i = 0; i < computers.size(); i++) {
-                    Computer get = computers.get(i);
-                    System.out.println(get.print());
-                }
+                /*for (int i = 0; i < computers.size(); i++) {
+                Computer get = computers.get(i);
+                System.out.println(get.print());
+                }*/
             }
             
             String commandAll = CommandType.getText();
@@ -231,6 +231,11 @@ public final class Hacknet extends javax.swing.JFrame {
                 connect(command[1]);
             } else if(command[0].equalsIgnoreCase("scan")) {
                 print(currentTarget.printScan());
+            } else if(command[0].equalsIgnoreCase("list")) {
+                for (int i = 0; i < computers.size(); i++) {
+                    Computer get = computers.get(i);
+                    System.out.println(get.print());
+                }
             } else if(command[0].equalsIgnoreCase("auth")) {
                 AuthWindow aw = new AuthWindow();
                 aw.setVisible(true);
