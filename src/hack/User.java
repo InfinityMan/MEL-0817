@@ -29,25 +29,29 @@ public class User implements Serializable {
     
     private static final long serialVersionUID = 2L;
     
-    //public Computer computer;
+    //computer:
     
+    public ArrayList<Software> soft;
+    public ArrayList<GFile> files;
+    public int powerCPU = 200;
+    
+    //end
+    
+    //user txts:
     
     public String userPass = "AU0001";
-
-    
     public String nick = "-167458";
     
-    public int powerCPU = 200;
+    //end
     
     public int exp;
     
-   
     public int gettedContractsNumber = 0;
     
- 
     public ArrayList<Contract> availableContracts;
-
     public ArrayList<Contract> currentContracts;
+    
+
     
 
     public User(Hacknet hacknet) {
