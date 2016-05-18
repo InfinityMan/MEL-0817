@@ -29,8 +29,6 @@ public class Contract implements Serializable {
     public int needLvl;
     public int type;
     
-    public GFile targetFile;
-    
     /*
     type:
     0 - destroy
@@ -85,11 +83,6 @@ public class Contract implements Serializable {
         target = lvlComps.get(Base.randomNumber(0, lvlComps.size()));
         
         
-    }
-    
-    public boolean isComplited() {
-        
-        return false;
     }
     
 }

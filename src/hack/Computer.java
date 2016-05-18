@@ -40,8 +40,6 @@ public class Computer implements Serializable {
     
     public AuthWindow aw;
     
-    public String nameOfFileDeleted;
-    
     public String print() {
         return TYPES[getType()] + ", name: \""+nameComputer+"\", ip: "+ip+", hacked: "+hacked;
     }
@@ -338,16 +336,6 @@ public class Computer implements Serializable {
             }
         }
         return ret;
-    }
-    
-    public void rm(GFile file) {
-        for (int i = 0; i < files.size(); i++) {
-            GFile get = files.get(i);
-            if(get.equals(file)) {
-                nameOfFileDeleted = file.toString();
-                files.remove(i);
-            }
-        }
     }
     
     public String printScan() {
