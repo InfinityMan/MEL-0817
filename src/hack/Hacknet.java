@@ -249,6 +249,12 @@ public final class Hacknet extends javax.swing.JFrame {
                 missions();
             } else if(command[0].equalsIgnoreCase("mission")) {
                 genMission();
+            } else if(command[0].equalsIgnoreCase("rm")) {
+                if(command[1].contains(".")) {
+                    rm(new GFile(command[1]));
+                } else {
+                    print("Oh, file is not exits");
+                }
             } else if(command[0].equalsIgnoreCase("dc")) {
                 dc();
             } else if(command[0].startsWith("com")) {
@@ -296,6 +302,18 @@ public final class Hacknet extends javax.swing.JFrame {
 
     public void dc() {
         currentTarget = null;
+    }
+    
+    public void rm(GFile file) {
+        if(currentTarget != null) {
+            if(currentTarget.hacked) {
+                if(currentTarget.hasFile(file)) {
+                    currentTarget.rm(file);
+                } else {
+                    print("Oh, file is not exits");
+                }
+            }
+        }
     }
     
     
