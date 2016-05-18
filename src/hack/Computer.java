@@ -327,6 +327,17 @@ public class Computer implements Serializable {
         }
     }
     
+    public boolean hasFile(GFile file) {
+        boolean ret = false;
+        for (int i = 0; i < files.size(); i++) {
+            GFile get = files.get(i);
+            if(get.equals(file)) {
+                ret = true;
+            }
+        }
+        return ret;
+    }
+    
     public String printScan() {
         String first = "Result of scan: \n"
                 + " Admin: "+hacked+"\n"
