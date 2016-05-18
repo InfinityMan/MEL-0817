@@ -22,8 +22,14 @@ public class GFile implements Serializable {
         this.format = format;
     }
     
-    public String print() {
-        return name + "." + format;
+    public GFile(String nameOfFileWithFormat) {
+        if (nameOfFileWithFormat.contains(".")) {
+            String[] nOFWF = nameOfFileWithFormat.split(".");
+            name = nOFWF[0];
+            format = nOFWF[1];
+        } else {
+            name = nameOfFileWithFormat;
+        }
     }
 
     @Override
@@ -57,7 +63,7 @@ public class GFile implements Serializable {
 
     @Override
     public String toString() {
-        return "GFile{" + name + '.' + format + '}';
+        return name + '.' + format;
     }
     
     
