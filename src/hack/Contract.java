@@ -84,12 +84,25 @@ public class Contract implements Serializable {
         
         target = lvlComps.get(Base.randomNumber(0, lvlComps.size()));
         
+        if(type == 0 || type == 1) {
+            targetFile = target.files.get(Base.randomNumber(0, target.files.size()));
+            missionFull += "\n\n"+targetFile.toString();
+        } else {
+            
+        }
         
     }
     
     public boolean isComplited() {
-        
-        return false;
+        if(type == 0) {
+            if(target.nameOfFileDeleted.equals(targetFile.toString())) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
     
 }
