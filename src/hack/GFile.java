@@ -54,6 +54,11 @@ public class GFile implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "GFile{" + name + '.' + format + '}';
+    }
     
     
     
