@@ -322,7 +322,8 @@ public final class Hacknet extends javax.swing.JFrame {
     
     private void missions() {
         Thread myThready = new Thread( () -> {
-            ContractsList cl = new ContractsList(user, user.currentContracts);
+            ContractsList cl = new ContractsList(user,false);
+            cl.setList(user.currentContracts);
             cl.setVisible(true);
         });
         myThready.start();

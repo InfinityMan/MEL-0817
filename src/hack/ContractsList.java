@@ -16,16 +16,13 @@ public class ContractsList extends javax.swing.JFrame {
     public ArrayList<Contract> items;
     public User user;
     
-    public ContractsList(User user) {
-        this.user = user;
-        items = new ArrayList<>();
-        initComponents();
-    }
+    private boolean inited = false;
+    public boolean canAcceptNew;
     
-    public ContractsList(User user, ArrayList<Contract> missions) {
+    public ContractsList(User user, boolean canAcceptNew) {
+        this.canAcceptNew = canAcceptNew;
         this.user = user;
         items = new ArrayList<>();
-        setList(missions);
         initComponents();
     }
     
@@ -37,6 +34,7 @@ public class ContractsList extends javax.swing.JFrame {
             jComboBox1.addItem(get.missionShort);
             items.add(get);
         }
+        inited = true;
     }
 
     /**
@@ -54,9 +52,14 @@ public class ContractsList extends javax.swing.JFrame {
         Desc = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
 
         Accept.setText("Accept");
         Accept.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +73,7 @@ public class ContractsList extends javax.swing.JFrame {
         Desc.setText("The mission desc");
         jScrollPane2.setViewportView(Desc);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Temp" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -109,12 +113,26 @@ public class ContractsList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptActionPerformed
-        user.addMission(items.get(jComboBox1.getSelectedIndex()));
+        if(canAcceptNew) {
+            user.addMission(items.get(jComboBox1.getSelectedIndex()));
+        }
     }//GEN-LAST:event_AcceptActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        Desc.setText(items.get(jComboBox1.getSelectedIndex()).missionFull);
+        if (inited) {
+            if (jComboBox1.getSelectedIndex() != -1) {
+                Desc.setText(items.get(jComboBox1.getSelectedIndex()).missionFull);
+            }
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        if (!canAcceptNew) {
+            setList(user.currentContracts);
+        } else {
+            
+        }
+    }//GEN-LAST:event_UpdateActionPerformed
 
     
     
