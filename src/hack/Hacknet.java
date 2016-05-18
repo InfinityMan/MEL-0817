@@ -250,16 +250,12 @@ public final class Hacknet extends javax.swing.JFrame {
             } else if(command[0].equalsIgnoreCase("mission")) {
                 genMission();
             } else if(command[0].equalsIgnoreCase("rm")) {
-                if(command[1].contains(".")) {
-                    rm(new GFile(command[1]));
-                } else {
-                    print("Oh, file is not exits");
-                }
+                rm(new GFile(command[1]));
             } else if(command[0].equalsIgnoreCase("dc")) {
                 dc();
             } else if(command[0].startsWith("com")) {
                 try {
-                    if (Base.stringToInt(command[1]) > 0 && Base.stringToInt(command[1]) < user.currentContracts.size() + 1) {
+                    if (Base.stringToInt(command[1]) > 0 && Base.stringToInt(command[1]) < user.gettedContractsNumber-1) {
                         if (user.currentContracts.get(Base.stringToInt(command[1])).isComplited()) {
                             //award
                             print("You successfully completed a contract " + command[1]);
@@ -311,6 +307,8 @@ public final class Hacknet extends javax.swing.JFrame {
                 } else {
                     print("Oh, file is not exits");
                 }
+            } else {
+                print("Computer is not hacked");
             }
         }
     }
@@ -320,9 +318,7 @@ public final class Hacknet extends javax.swing.JFrame {
      *
      */
     public void mail() {
-        int random = 58;
-        System.err.println("level: "+random);
-        //print(new Computer(random).printScan());
+        currentTarget.hacked = true;
     }
     
     private void missions() {
@@ -335,9 +331,9 @@ public final class Hacknet extends javax.swing.JFrame {
     }
     
     private void genMission() {
-        Contract con = new Contract(2, user);
+        Contract con = new Contract(0, user);
         print(con.id+", "+con.target.ip+", "+con.missionShort);
-        user.currentContracts.add(new Contract(0, user));
+        user.currentContracts.add(con); //EEEEEEEEEEEEEEEEEEEEE
         user.gettedContractsNumber++;
     }
     

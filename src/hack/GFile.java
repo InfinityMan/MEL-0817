@@ -23,13 +23,14 @@ public class GFile implements Serializable {
     }
     
     public GFile(String nameOfFileWithFormat) {
-        if (nameOfFileWithFormat.contains(".")) {
-            String[] nOFWF = nameOfFileWithFormat.split(".");
-            name = nOFWF[0];
-            format = nOFWF[1];
-        } else {
+        System.err.println(nameOfFileWithFormat);
+        //if (nameOfFileWithFormat.contains(".")) {
+            //String[] nOFWF = nameOfFileWithFormat.split(".");
+            //name = nOFWF[0];
+            //format = nOFWF[1];
+        //} else {
             name = nameOfFileWithFormat;
-        }
+        //}
     }
 
     @Override

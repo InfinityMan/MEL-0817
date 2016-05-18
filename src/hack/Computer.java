@@ -333,9 +333,12 @@ public class Computer implements Serializable {
         boolean ret = false;
         for (int i = 0; i < files.size(); i++) {
             GFile get = files.get(i);
-            if(get.equals(file)) {
+            if(get.name.equals(file.name)) {
                 ret = true;
             }
+            System.err.println("hack.Computer.hasFile() : ");
+            System.err.println(" "+get.name);
+            System.err.println(" "+file.name);
         }
         return ret;
     }
@@ -343,9 +346,10 @@ public class Computer implements Serializable {
     public void rm(GFile file) {
         for (int i = 0; i < files.size(); i++) {
             GFile get = files.get(i);
-            if(get.equals(file)) {
+            if(get.name.equals(file.name)) {
                 nameOfFileDeleted = file.toString();
                 files.remove(i);
+                System.err.println("ok");
             }
         }
     }

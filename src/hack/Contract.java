@@ -85,7 +85,7 @@ public class Contract implements Serializable {
         target = lvlComps.get(Base.randomNumber(0, lvlComps.size()));
         
         if(type == 0 || type == 1) {
-            targetFile = target.files.get(Base.randomNumber(0, target.files.size()));
+            targetFile = target.files.get(Base.randomNumber(0, target.files.size()-1));
             missionFull += "\n\n"+targetFile.toString();
         } else {
             
