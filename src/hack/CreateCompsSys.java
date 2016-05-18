@@ -6,17 +6,12 @@
 package hack;
 
 import static java.awt.EventQueue.invokeLater;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
-import static java.util.logging.Logger.getLogger;
 import static javax.swing.UIManager.getInstalledLookAndFeels;
-import static javax.swing.UIManager.setLookAndFeel;
 import ru.epiclib.base.Base;
-import ru.epiclib.base.FileWorker;
 import static java.util.logging.Logger.getLogger;
 import static javax.swing.UIManager.setLookAndFeel;
 

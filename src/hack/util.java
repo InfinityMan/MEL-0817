@@ -5,7 +5,6 @@
  */
 package hack;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import ru.epiclib.base.Base;
 

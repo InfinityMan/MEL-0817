@@ -9,27 +9,15 @@ import static hack.User.load;
 import static java.awt.EventQueue.invokeLater;
 import static java.awt.event.KeyEvent.VK_ENTER;
 import java.io.IOException;
-import static java.lang.System.err;
 import static java.lang.System.exit;
-import static java.lang.System.out;
-import static java.lang.Thread.sleep;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.UIManager.getCrossPlatformLookAndFeelClassName;
 import static javax.swing.UIManager.getSystemLookAndFeelClassName;
-import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import ru.epiclib.base.Base;
 import static ru.epiclib.base.Base.deserData;
 import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static javax.swing.UIManager.setLookAndFeel;
-import static ru.epiclib.base.Base.randomBinary;
 
 /**
  *

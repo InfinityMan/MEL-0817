@@ -9,13 +9,10 @@ import hack.MiniHacknet;
 import hack.Protect;
 import java.io.Serializable;
 import static java.lang.System.exit;
-import static java.lang.Thread.sleep;
 import static javax.swing.UIManager.getCrossPlatformLookAndFeelClassName;
 import static javax.swing.UIManager.getSystemLookAndFeelClassName;
-import static javax.swing.UIManager.setLookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
 import ru.epiclib.base.Base;
-import static ru.epiclib.base.Base.randomBinary;
 import static java.lang.Thread.sleep;
 import static javax.swing.UIManager.setLookAndFeel;
 

@@ -8,20 +8,12 @@ package hack;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import static java.lang.System.err;
 import static java.lang.System.exit;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import static ru.epiclib.base.Base.deserData;
 import static ru.epiclib.base.Base.serData;
 import static ru.epiclib.base.Base.stringToInt;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
-import static ru.epiclib.base.FileWorker.read;
 import static ru.epiclib.base.FileWorker.read;
 
 
