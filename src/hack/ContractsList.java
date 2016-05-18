@@ -5,17 +5,29 @@
  */
 package hack;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Dima
  */
 public class ContractsList extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ContractsList
-     */
+    ArrayList<Contract> items;
+    
     public ContractsList() {
+        items = new ArrayList<>();
         initComponents();
+    }
+    
+    public void setList(ArrayList<Contract> missions) {
+        jComboBox1.removeAllItems();
+        items.clear();
+        for (int i = 0; i < missions.size(); i++) {
+            Contract get = missions.get(i);
+            jComboBox1.addItem(get.missionShort);
+            items.add(get);
+        }
     }
 
     /**
