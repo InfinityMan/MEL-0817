@@ -13,10 +13,19 @@ import java.util.ArrayList;
  */
 public class ContractsList extends javax.swing.JFrame {
 
-    ArrayList<Contract> items;
+    public ArrayList<Contract> items;
+    public User user;
     
-    public ContractsList() {
+    public ContractsList(User user) {
+        this.user = user;
         items = new ArrayList<>();
+        initComponents();
+    }
+    
+    public ContractsList(User user, ArrayList<Contract> missions) {
+        this.user = user;
+        items = new ArrayList<>();
+        setList(missions);
         initComponents();
     }
     
@@ -50,13 +59,22 @@ public class ContractsList extends javax.swing.JFrame {
         Update.setText("Update");
 
         Accept.setText("Accept");
+        Accept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptActionPerformed(evt);
+            }
+        });
 
         Desc.setColumns(20);
         Desc.setRows(5);
         Desc.setText("The mission desc");
         jScrollPane2.setViewportView(Desc);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +107,14 @@ public class ContractsList extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptActionPerformed
+        user.addMission(items.get(jComboBox1.getSelectedIndex()));
+    }//GEN-LAST:event_AcceptActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        Desc.setText(items.get(jComboBox1.getSelectedIndex()).missionFull);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
     
