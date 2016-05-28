@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 /**
  * Base functions
  * @author Dmitry Tsvetkovsky
- * @version 1.00
  */
 public class Base {
 
@@ -217,74 +216,106 @@ public class Base {
     
     //<editor-fold defaultstate="collapsed" desc="Chance">
     
-    public static boolean chance(int chance) {
-
-        int alpha = randomNumber(1, 100); // 1-100 vkl
-        boolean retBool = false;
-
-        if (chance > 0) {
-            if (chance < 100) {
-                int[] random = new int[100];
-                for (int i = 0; i < random.length; i++) {
-                    random[i] = 0;
-                }
-                for (int i = 0; i < chance; i++) {
-                    random[i] = 1 + i;
-                }
-                for (int i = 0; i < random.length; i++) {
-                    if (alpha == random[i]) {
-                        retBool = true;
-                    }
-                }
-            } else {
-                retBool = true;
-            }
-        } else {
-            retBool = false;
-        }
-
-        return retBool;
-
+    /**
+     * Chance for 1.0%
+     * @param chance 
+     * @return 
+    */
+    
+    static boolean chanceProcent(int chance) {
+        return mainChance(chance, 100);
     }
 
-    public static boolean upgradedChance(int chance) { //0.1%
-
-        int alpha = randomNumber(1, 1000); // 1-1000 vkl
-        boolean retBool = false;
-
-        if (chance > 0) {
-            if (chance < 1000) {
-                int[] random = new int[1000];
-                for (int i = 0; i < random.length; i++) {
-                    random[i] = 0;
-                }
-                for (int i = 0; i < chance; i++) {
-                    random[i] = 1 + i;
-                }
-                for (int i = 0; i < random.length; i++) {
-                    if (alpha == random[i]) {
-                        retBool = true;
-                    }
-                }
-            } else {
-                retBool = true;
-            }
-        } else {
-            retBool = false;
-        }
-
-        return retBool;
-
+    /**
+     * Chance for 0.1%
+     * @param chance
+     * @return 
+     */
+    
+    static boolean chanceDecimal(int chance) { //0.1%
+        return mainChance(chance, 1000);
     }
+    
+    /**
+     * Chance for 0.01%
+     * @param chance
+     * @return 
+     */
 
-    public static boolean veryUpgradedChance(int chance) { //0.01%
-
-        int alpha = randomNumber(1, 10000); // 1-10000 vkl
+    static boolean chanceHundredth(int chance) { //0.01%
+        return mainChance(chance, 10000);
+    }
+    
+    /**
+     * Chance for 0.001%
+     * @param chance
+     * @return 
+     */
+    
+    static boolean chanceThousandth(int chance) {
+        return mainChance(chance, 100000);
+    }
+    
+    /**
+     * Chance for 0.0001%
+     * @param chance
+     * @return 
+     */
+    
+    static boolean chanceTenthousandth(int chance) {
+        return mainChance(chance, 1000000);
+    }
+    
+    static boolean chanceHundredthousandth(int chance) {
+        return mainChance(chance, 10000000);
+    }
+    
+    static boolean chanceMillonth(int chance) {
+        return mainChance(chance, 100000000);
+    }
+    
+    static boolean chanceMax(int chance) {
+        return mainChance(chance, 1000000000);
+    }
+    
+    /**
+     * Gen random boolean with chance "chance"
+     * @param chance Chance of gen true
+     * @param numberOfDigitsAfterPoint Accurate
+     * @return Return boolean
+     */
+    
+    public static boolean chance(int chance, int numberOfDigitsAfterPoint) {
+        switch(numberOfDigitsAfterPoint) {
+            case 0:
+                return chanceProcent(chance);
+            case 1:
+                return chanceDecimal(chance);
+            case 2:
+                return chanceHundredth(chance);
+            case 3:
+                return chanceThousandth(chance);
+            case 4:
+                return chanceTenthousandth(chance);
+            case 5:
+                return chanceHundredthousandth(chance);
+            case 6:
+                return chanceMillonth(chance);
+            case 7:
+                return chanceMax(chance);
+            default :
+                return false;
+        }
+    }
+    
+    
+    private static boolean mainChance(int chance, int max) {
+        int alpha = randomNumber(1, max); // 1-max vkl
         boolean retBool = false;
 
         if (chance > 0) {
-            if (chance < 10000) {
-                int[] random = new int[10000];
+            if (chance < max) {
+                int[] random = new int[max];
                 for (int i = 0; i < random.length; i++) {
                     random[i] = 0;
                 }
@@ -304,7 +335,6 @@ public class Base {
         }
 
         return retBool;
-
     }
     
     //</editor-fold>
@@ -318,6 +348,11 @@ public class Base {
      */
     
     public static int randomNumber(int min, int max) {
+
+        return (int) (min + Math.random() * (max - min));
+    }
+    
+    public static int randomNumber(long min, long max) {
 
         return (int) (min + Math.random() * (max - min));
     }
@@ -473,7 +508,7 @@ public class Base {
             
             for (int i = 0; i < length; i++) {
                 
-                if (chance(50)) {
+                if (chanceProcent(50)) {
                     String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length)];
                     retStr += a;
                 } else {
@@ -495,8 +530,8 @@ public class Base {
             
             for (int i = 0; i < length; i++) {
                 
-                if (chance(50)) {
-                    if (chance(50)) {
+                if (chanceProcent(50)) {
+                    if (chanceProcent(50)) {
                         String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length)];
                         retStr += a;
                     } else {
@@ -574,7 +609,7 @@ public class Base {
             while (index == -1) {
                 for (int i = 0; i < tenChances.length; i++) {
                     int tenChance = tenChances[i];
-                    if (chance(tenChance)) {
+                    if (chanceProcent(tenChance)) {
                         index = i;
                         break;
                     }
@@ -615,6 +650,37 @@ public class Base {
         return new String(codidStr);
     }
     
+    public static int getBinaryOfBoolean(boolean bool) {
+        if(bool) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     
+    /**
+     * Generate random number from 0 to max 
+     * @param max maximum index
+     * @return Return random number from 0 to max
+     */
+    
+    public static int getIndexFromList(int max) {
+        
+        Double chanceOfAnyIndexDb = new Double(100/max);
+        Double temp = chanceOfAnyIndexDb*10000000;
+        int chanceOfAnyIndex = chanceOfAnyIndexDb.intValue();
+        int retIndex = -1;
+        
+        int tempIndex = 0;
+        while(retIndex == -1) {
+            if(chance(chanceOfAnyIndex,7)) {
+                retIndex = tempIndex;
+            } else {
+                tempIndex++;
+            }
+        }
+        
+        return retIndex;
+    }
 
 }
