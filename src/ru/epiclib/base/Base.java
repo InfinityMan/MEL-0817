@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * Base functions
  * @author Dmitry Tsvetkovsky
  */
-public class Base {
+public final class Base {
 
     public static String[] suffixes = {"K", "m", "M", "b", "B", "t", "T", "kd", "Kd", "kn", "Kn", "sx", "Sx", "sp",
         "Sp", "o", "O", "n", "N", "d", "D", "y", "Y", "dd", "Dd", "td", "Td", "kt", "Kt", "qd", "Qd", "sd", "Sd",
@@ -31,6 +31,10 @@ public class Base {
     public static final String[] RUSALPHAVET = {"а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ч","ш","щ","ь","ы","ъ","э","ю","я"};
     
     public static final String[] RUSALPHAVETCAPS = {"А","Б","В","Г","Д","Е","Ё","Ж","З","И","Й","К","Л","М","Н","О","П","Р","С","Т","У","Ф","Х","Ц","Ч","Ш","Щ","Ь","Ы","Ъ","Э","Ю","Я"};
+  
+    private Base() {
+        
+    }
     
     // <editor-fold defaultstate="collapsed" desc="String Translate">
 
