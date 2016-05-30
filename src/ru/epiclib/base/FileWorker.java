@@ -14,11 +14,9 @@ public class FileWorker {
 
             PrintWriter out = new PrintWriter(file.getAbsoluteFile());
 
-            try {
-                out.print(text);
-            } finally {
-                out.close();
-            }
+            out.print(text);
+            out.close();
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -152,7 +150,7 @@ public class FileWorker {
         new File(nameFile).delete();
     }
 
-    private static void exists(String fileName) throws FileNotFoundException {
+    public static void exists(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()) {
             throw new FileNotFoundException(file.getName());
