@@ -626,33 +626,7 @@ public final class Base {
         }
     }
     
-    private static int bigChar(int checkChr) {
-        if (checkChr > 90)
-            return checkChr - 25;
-        else if (checkChr < 65)
-            return checkChr + 25;
-        return checkChr;
-    }
- 
-    private static int littleChar(int checkChr) {
-        if (checkChr > 122)
-            return checkChr - 25;
-        else if (checkChr < 97)
-            return checkChr + 25;
-        return checkChr;
-    }
- 
-    public static String caesarCypher(char [] codidStr, int offset) {
-        for (int i = 0; i < codidStr.length; i++) {
-           if (codidStr[i] >= 'A' && codidStr[i] <= 'Z') {
-               codidStr[i] = (char)bigChar(codidStr[i] + offset);
-           }
-           else if (codidStr[i] >= 'a' && codidStr[i] <= 'z') {
-               codidStr[i] = (char)littleChar(codidStr[i] + offset);
-           }
-        }
-        return new String(codidStr);
-    }
+    
     
     public static int getBinaryOfBoolean(boolean bool) {
         if(bool) {
