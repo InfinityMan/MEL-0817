@@ -660,7 +660,37 @@ public final class Base {
         }
     }
     
+    public double[] concatArray(double[] a, double[] b) {
+	if (a == null)
+		return b;
+	if (b == null)
+		return a;
+	double[] r = new double[a.length + b.length];
+	System.arraycopy(a, 0, r, 0, a.length);
+	System.arraycopy(b, 0, r, a.length, b.length);
+	return r;
+    }
     
+    public String[] concatArray(String[] a, String[] b) {
+	if (a == null)
+		return b;
+	if (b == null)
+		return a;
+	String[] r = new String[a.length + b.length];
+	System.arraycopy(a, 0, r, 0, a.length);
+	System.arraycopy(b, 0, r, a.length, b.length);
+	return r;
+    }
+    
+    public double mediumValueOfArray(int[] array) {
+        int result = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            result = result + array[i];
+        }
+        
+        return result / array.length;
+    }
     
     public static int getBinaryOfBoolean(boolean bool) {
         if(bool) {
