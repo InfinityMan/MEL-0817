@@ -660,7 +660,7 @@ public final class Base {
         }
     }
     
-    public double[] concatArray(double[] a, double[] b) {
+    public static double[] concatArray(double[] a, double[] b) {
 	if (a == null)
 		return b;
 	if (b == null)
@@ -671,7 +671,7 @@ public final class Base {
 	return r;
     }
     
-    public String[] concatArray(String[] a, String[] b) {
+    public static String[] concatArray(String[] a, String[] b) {
 	if (a == null)
 		return b;
 	if (b == null)
@@ -682,7 +682,7 @@ public final class Base {
 	return r;
     }
     
-    public double mediumValueOfArray(int[] array) {
+    public static double mediumValueOfArray(int[] array) {
         int result = 0;
 
         for (int i = 0; i < array.length; i++) {
