@@ -692,6 +692,16 @@ public final class Base {
         return result / array.length;
     }
     
+    public static double mediumValueOfArray(double[] array) {
+        double result = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            result = result + array[i];
+        }
+        
+        return result / array.length;
+    }
+    
     public static int getBinaryOfBoolean(boolean bool) {
         if(bool) {
             return 1;
