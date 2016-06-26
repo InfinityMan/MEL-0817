@@ -605,6 +605,12 @@ public final class Base {
         
     }
     
+    /**
+     * Get one of ten indexes in the array uses chances
+     * @param tenChances array of chances of indexes
+     * @return index
+     */
+    
     public static int chances(int[] tenChances) {
         if(tenChances.length == 10) {
             
@@ -614,6 +620,34 @@ public final class Base {
                 for (int i = 0; i < tenChances.length; i++) {
                     int tenChance = tenChances[i];
                     if (chanceProcent(tenChance)) {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
+            return index;
+        } else {
+            return 0;
+        }
+    }
+    
+    /**
+     * Get one of ten indexes in the array uses chances
+     * @param tenChances array of chances of indexes
+     * @param numberOfDigitsAfterPoint for finest acuracy
+     * @return index
+     */
+    
+    public static int chances(int[] tenChances, int numberOfDigitsAfterPoint) {
+        if(tenChances.length == 10) {
+            
+            int index = -1;
+            
+            while (index == -1) {
+                for (int i = 0; i < tenChances.length; i++) {
+                    int tenChance = tenChances[i];
+                    if (chance(tenChance, numberOfDigitsAfterPoint)) {
                         index = i;
                         break;
                     }
