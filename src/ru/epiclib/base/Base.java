@@ -702,6 +702,22 @@ public final class Base {
         return result / array.length;
     }
     
+    public static double minDoubleInArray(double[] a) {
+        double min = a[0];
+        for(double x: a) {
+                if(x < min) min = x;
+        }
+        return min;
+    }
+    
+    public static double maxDoubleInArray(double[] a) {
+        double min = a[0];
+        for(double x: a) {
+                if(x > min) min = x;
+        }
+        return min;
+    }
+    
     public static int getBinaryOfBoolean(boolean bool) {
         if(bool) {
             return 1;
