@@ -344,7 +344,9 @@ public final class Base {
     //</editor-fold>
     
     /**
-     * Генерирует случайное число типа int, от min до max (включительно)
+     * Генерирует случайное число типа int, от min до max
+     * 
+     * <p><b>min 0 max 4 => 0;1;2;3;4 min 5 max 10 => 5,6,7,8,9,10</b</p>
      * @param min минимальное число
      * @param max максимальное число
      * @return Случачайное число
@@ -352,13 +354,11 @@ public final class Base {
      */
     
     public static int randomNumber(int min, int max) {
-
-        return (int) (min + Math.random() * (max - min));
+        return (int) (min + Math.random() * ((max+1) - min));
     }
     
-    public static int randomNumber(long min, long max) {
-
-        return (int) (min + Math.random() * (max - min));
+    public static long randomNumber(long min, long max) {
+        return (long) (min + Math.random() * ((max+1) - min));
     }
 
     public static int findInCharArrayChar(char[] charArray, char symbol) {
@@ -369,11 +369,6 @@ public final class Base {
             }
         }
         return retInt;
-    }
-
-    public static boolean switchBool(boolean a) {
-        a = !a;
-        return a;
     }
 
     public static int[] bubbleSort(int array[]) {
