@@ -508,7 +508,7 @@ public final class Base {
             for (int i = 0; i < length; i++) {
                 
                 if (chanceProcent(50)) {
-                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length)];
+                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
                     retStr += a;
                 } else {
                     String a = randomNumber(0, 9) + "";
@@ -531,10 +531,10 @@ public final class Base {
                 
                 if (chanceProcent(50)) {
                     if (chanceProcent(50)) {
-                        String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length)];
+                        String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
                         retStr += a;
                     } else {
-                        String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length)];
+                        String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length-1)];
                         retStr += a;
                     }
                 } else {
@@ -556,7 +556,7 @@ public final class Base {
             
             for (int i = 0; i < length; i++) {
                 
-                String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length)];
+                String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
                 retStr += a;
                 
             }
@@ -590,7 +590,7 @@ public final class Base {
             String binary = "";
             
             for (int i = 0; i < length; i++) {
-                binary += randomNumber(0, 2);
+                binary += randomNumber(0, 1);
             }
             
             return binary;
