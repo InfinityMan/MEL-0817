@@ -118,31 +118,6 @@ public final class Base {
     
     // </editor-fold> //javadoc +
     
-    // <editor-fold defaultstate="collapsed" desc="Number Translate">
-
-    /**
-     * Преобразует число типа short в строку
-     * @param anShort Число типа short
-     * @return Возвращает число типа short
-     */
-    
-    public static String shortToString(short anShort) {
-        String string = Short.toString(anShort);
-        return string;
-    }
-
-    public static String intToString(int anInt) {
-        String string = Integer.toString(anInt);
-        return string;
-    }
-
-    public static String doubleToString(double anDouble) {
-        String string = Double.toString(anDouble);
-        return string;
-    }
-    
-    // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="SerDeser">
     
     
@@ -150,33 +125,22 @@ public final class Base {
      * Serializing obj to file with name file_name
      * @param file_name Name of file to serializing
      * @param obj Object to serializing
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.NotSerializableException
      */
     
-    public static void serData(String file_name, Object obj){
+    public static void serData(String file_name, Object obj) throws FileNotFoundException, NotSerializableException, IOException {
 
         FileOutputStream fileOut = null;
-        try {
-            fileOut = new FileOutputStream(file_name);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(obj);
-            fileOut.close();
-            out.close();
-        } catch (FileNotFoundException ex) {
-            System.err.println(ex);
-        } catch (NotSerializableException ex) {
-            System.err.println(ex);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        } finally {
-            try {
-                fileOut.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+
+        fileOut = new FileOutputStream(file_name);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(obj);
+        out.close();
+        fileOut.close();
 
     }
-    
+
     /**
      * Deserializing object from file with name file_name
      * @param file_name Name of file to deserializing
@@ -185,17 +149,14 @@ public final class Base {
      * @throws IOException 
      */
 
-    public static Object deserData(String file_name) throws FileNotFoundException, IOException {
+    public static Object deserData(String file_name) throws FileNotFoundException, IOException, ClassNotFoundException {
         Object retObject = null;
-        try {
-            InputStream fileIn = new FileInputStream(file_name);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            retObject = in.readObject();
-            fileIn.close();
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Class not found");
-            System.exit(3);
-        }
+
+        InputStream fileIn = new FileInputStream(file_name);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        retObject = in.readObject();
+        fileIn.close();
+        
         return retObject;
     }
     
@@ -346,7 +307,7 @@ public final class Base {
     /**
      * Генерирует случайное число типа int, от min до max
      * 
-     * <p><b>min 0 max 4 => 0;1;2;3;4 min 5 max 10 => 5,6,7,8,9,10</b</p>
+     * <p><b>min 0 max 4 => 0;1;2;3;4 min 5 max 10 => 5,6,7,8,9,10</b></p>
      * @param min минимальное число
      * @param max максимальное число
      * @return Случачайное число
@@ -356,6 +317,16 @@ public final class Base {
     public static int randomNumber(int min, int max) {
         return (int) (min + Math.random() * ((max+1) - min));
     }
+    
+    /**
+     * Генерирует случайное число типа long, от min до max
+     * 
+     * <p><b>min 0 max 4 => 0;1;2;3;4 min 5 max 10 => 5,6,7,8,9,10</b></p>
+     * @param min минимальное число
+     * @param max максимальное число
+     * @return Случачайное число
+     * @since 1.00
+     */
     
     public static long randomNumber(long min, long max) {
         return (long) (min + Math.random() * ((max+1) - min));
@@ -487,7 +458,7 @@ public final class Base {
 
         String retString = "";
         for (int i = 0; i < intArray.length; i++) {
-            retString += intToString(intArray[i]);
+            retString += intArray[i] + "";
         }
 
         return retString;
@@ -495,89 +466,70 @@ public final class Base {
     }
     
     /**
-     * Generate random String
-     * @param length Length of the String
-     * @return Random String
+     * Returns randomly generated String with params
+     * @param length Length of String
+     * @param smallLet Includes small letters?
+     * @param bigLet Includes big letters?
+     * @param nums Includes numbers?
+     * @return Generated String
      */
     
-    public static String randomCombineString(int length) {
-        
-        if (length >= 1) {
+    public static String randomString(int length, boolean smallLet, boolean bigLet, boolean nums) {
+        if (length >= 1 && (smallLet || bigLet || nums)) {
             String retStr = "";
-            
+
             for (int i = 0; i < length; i++) {
-                
-                if (chanceProcent(50)) {
-                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
-                    retStr += a;
-                } else {
+
+                if (nums) {
                     String a = randomNumber(0, 9) + "";
                     retStr += a;
-                }
-                
-            }
-            
-            return retStr;
-        } else {
-            return "";
-        }
-    }
-    
-    public static String randomCombineBigString(int length) {
-        if (length >= 1) {
-            String retStr = "";
-            
-            for (int i = 0; i < length; i++) {
-                
-                if (chanceProcent(50)) {
+                } else if (smallLet) {
+                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
+                    retStr += a;
+                } else if (bigLet) {
+                    String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                    retStr += a;
+                } else if (nums && smallLet) {
                     if (chanceProcent(50)) {
-                        String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
+                        String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
                         retStr += a;
                     } else {
-                        String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length-1)];
+                        String a = randomNumber(0, 9) + "";
                         retStr += a;
                     }
-                } else {
-                    String a = randomNumber(0, 9) + "";
-                    retStr += a;
+                } else if (nums && bigLet) {
+                    if (chanceProcent(50)) {
+                        String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                        retStr += a;
+                    } else {
+                        String a = randomNumber(0, 9) + "";
+                        retStr += a;
+                    }
+                } else if (smallLet && bigLet) {
+                    if (chanceProcent(50)) {
+                        String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
+                        retStr += a;
+                    } else {
+                        String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                        retStr += a;
+                    }
+                } else if (nums && smallLet && bigLet) {
+                    if (chanceProcent(50)) {
+                        if (chanceProcent(50)) {
+                            String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
+                            retStr += a;
+                        } else {
+                            String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                            retStr += a;
+                        }
+                    } else {
+                        String a = randomNumber(0, 9) + "";
+                        retStr += a;
+                    }
                 }
-                
+
             }
-            
-            return retStr;
-        } else {
-            return "";
-        }
-    }
-    
-    public static String randomString(int length) {
-        if (length >= 1) {
-            String retStr = "";
-            
-            for (int i = 0; i < length; i++) {
-                
-                String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length-1)];
-                retStr += a;
-                
-            }
-            
-            return retStr;
-        } else {
-            return "";
-        }
-    }
-    
-    public static String randomNumberString(int length) {
-        if (length >= 1) {
-            String retStr = "";
-            
-            for (int i = 0; i < length; i++) {
-                
-                String a = randomNumber(0, 9) + "";
-                retStr += a;
-                
-            }
-            
+
             return retStr;
         } else {
             return "";
@@ -744,6 +696,16 @@ public final class Base {
         }
         
         return retIndex;
+    }
+    
+    public static char[] deleteElementOfArray(char[] array, int index) {
+        char[] ret = new char[array.length-1];
+        for (int i = 0; i < array.length; i++) {
+            if(i != index) {
+                ret[i] = array[i];
+            }
+        }
+        return ret;
     }
 
 }
