@@ -129,7 +129,7 @@ public final class Base {
      * @throws java.io.NotSerializableException
      */
     
-    public static void serData(String file_name, Object obj) throws FileNotFoundException, NotSerializableException, IOException {
+    public static void serData(String file_name, Object obj) throws NotSerializableException, IOException {
 
         FileOutputStream fileOut = null;
 
@@ -480,15 +480,19 @@ public final class Base {
 
             for (int i = 0; i < length; i++) {
 
-                if (nums) {
-                    String a = randomNumber(0, 9) + "";
-                    retStr += a;
-                } else if (smallLet) {
-                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
-                    retStr += a;
-                } else if (bigLet) {
-                    String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
-                    retStr += a;
+                if (nums && smallLet && bigLet) {
+                    if (chanceProcent(50)) {
+                        if (chanceProcent(50)) {
+                            String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
+                            retStr += a;
+                        } else {
+                            String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                            retStr += a;
+                        }
+                    } else {
+                        String a = randomNumber(0, 9) + "";
+                        retStr += a;
+                    }
                 } else if (nums && smallLet) {
                     if (chanceProcent(50)) {
                         String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
@@ -513,19 +517,15 @@ public final class Base {
                         String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
                         retStr += a;
                     }
-                } else if (nums && smallLet && bigLet) {
-                    if (chanceProcent(50)) {
-                        if (chanceProcent(50)) {
-                            String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
-                            retStr += a;
-                        } else {
-                            String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
-                            retStr += a;
-                        }
-                    } else {
-                        String a = randomNumber(0, 9) + "";
-                        retStr += a;
-                    }
+                } else if (nums) {
+                    String a = randomNumber(0, 9) + "";
+                    retStr += a;
+                } else if (smallLet) {
+                    String a = ENGALPHAVET[randomNumber(1, ENGALPHAVET.length - 1)];
+                    retStr += a;
+                } else if (bigLet) {
+                    String a = ENGALPHAVETCAPS[randomNumber(1, ENGALPHAVETCAPS.length - 1)];
+                    retStr += a;
                 }
 
             }
