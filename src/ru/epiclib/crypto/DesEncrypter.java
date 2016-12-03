@@ -13,10 +13,9 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Класс реализующий работу с алгоритмом шифрования DES
  *
- * @author Rumoku; Dmig
+ * @author Rumoku
  */
-
-class DesEncrypter {
+public class DesEncrypter {
 
     Cipher ecipher;
     Cipher dcipher;
@@ -60,14 +59,9 @@ class DesEncrypter {
         return new String(utf8, "UTF8");
     }
     
-    /**
-     * Генерация подходящего ключа
-     * 
-     * @return Ключ типа DES
-     * @throws NoSuchAlgorithmException 
-     */
-    
     public static SecretKey genKey() throws NoSuchAlgorithmException {
-        return KeyGenerator.getInstance("DES").generateKey();
+        SecretKey key = null;
+        key = KeyGenerator.getInstance("DES").generateKey();
+        return key;
     }
 }
