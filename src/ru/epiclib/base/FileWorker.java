@@ -96,43 +96,23 @@ public class FileWorker {
 
         File file = new File(fileName);
 
-        StringBuilder sb = new StringBuilder();
-        try {
-            try {
-                BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
-                try {
-                    String s;
-                    while ((s = in.readLine()) != null) {
-                        sb.append(s);
-                        sb.append("\n");
-                    }
-                } finally {
-                    in.close();
-                }
-            } catch (FileNotFoundException e) {
-                file.createNewFile();
-                write(file, record);
-            }
-        } catch (IOException ex) {
-            System.exit(1);
-        }
-
-        return sb.toString();
+        return readCore(file, record);
     }
 
     public static String read(File file, String record) throws FileNotFoundException {
+        return readCore(file, record);
+    }
+
+    private static String readCore(File file, String record) throws FileNotFoundException {
         StringBuilder sb = new StringBuilder();
         try {
             try {
-                BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
-                try {
+                try (BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()))) {
                     String s;
                     while ((s = in.readLine()) != null) {
                         sb.append(s);
                         sb.append("\n");
                     }
-                } finally {
-                    in.close();
                 }
             } catch (FileNotFoundException e) {
                 file.createNewFile();
@@ -146,14 +126,19 @@ public class FileWorker {
     }
 
     public static void delete(String nameFile) throws FileNotFoundException {
-        exists(nameFile);
+        existsEx(nameFile);
         new File(nameFile).delete();
     }
 
-    public static void exists(String fileName) throws FileNotFoundException {
+    private static void existsEx(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()) {
             throw new FileNotFoundException(file.getName());
         }
     }
+    
+    public static boolean exists(String fileName) {
+        return new File(fileName).exists();
+    }
+    
 }

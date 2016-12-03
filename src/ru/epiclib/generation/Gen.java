@@ -93,7 +93,7 @@ public final class Gen {
     }
     
    private String getNumber() {
-       return Base.intToString(Base.randomNumber(0, 10));
+       return Base.randomNumber(0, 10) + "";
    }
     
 }

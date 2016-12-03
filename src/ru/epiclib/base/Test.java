@@ -15,10 +15,9 @@ import ru.epiclib.gui.PincodPanel;
  */
 class Test {
     public static void main(String[] args) {
-        String message = "message";
-        int[] key = {2,3,7,9,0,4};
-        System.out.println(message);
-        System.out.println(Cypher.caesarCypher(message.toCharArray(), key));
+        System.out.println("0237".hashCode());
+        System.out.println("1000".hashCode());
+        System.out.println("1337".hashCode());
     }
     private static final Logger LOG = Logger.getLogger(Test.class.getName());
 }
