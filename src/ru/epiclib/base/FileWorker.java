@@ -16,7 +16,7 @@ public class FileWorker {
 
             out.print(text);
             out.close();
-            
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -136,9 +136,9 @@ public class FileWorker {
             throw new FileNotFoundException(file.getName());
         }
     }
-    
+
     public static boolean exists(String fileName) {
         return new File(fileName).exists();
     }
-    
+
 }
