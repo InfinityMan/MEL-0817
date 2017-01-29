@@ -292,6 +292,22 @@ public final class Base {
     }
 
     //</editor-fold>
+    
+    /**
+     * Генерирует случайное число типа short, от min до max
+     *
+     * <p>
+     * <b>min 0 max 4 => 0;1;2;3;4 min 5 max 10 => 5,6,7,8,9,10</b></p>
+     *
+     * @param min минимальное число
+     * @param max максимальное число
+     * @return Случачайное число
+     * @since 1.00
+     */
+    public static short randomNumber(short min, short max) {
+        return (short) (min + Math.random() * ((max + 1) - min));
+    }
+    
     /**
      * Генерирует случайное число типа int, от min до max
      *
@@ -709,5 +725,5 @@ public final class Base {
         }
         return array;
     }
-
+    
 }
