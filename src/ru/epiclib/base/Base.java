@@ -726,4 +726,17 @@ public final class Base {
         return array;
     }
     
+    public static void reverseArray(int[] input) {
+        // handling null, empty and one element array
+        if (input == null || input.length <= 1) {
+            return;
+        }
+        for (int i = 0; i < input.length / 2; i++) {
+            int temp = input[i];
+            // swap numbers
+            input[i] = input[input.length - 1 - i];
+            input[input.length - 1 - i] = temp;
+        }
+    }
+    
 }
